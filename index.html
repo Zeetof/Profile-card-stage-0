@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Profile Card — Test Ready</title>
+  <style>
+    :root{
+      --card-bg: #fff;
+      --accent: #6c63ff;
+      --muted: #666;
+      --radius: 12px;
+      --shadow: 0 6px 20px rgba(19,19,30,0.08);
+      --focus: 3px solid rgba(108,99,255,0.18);
+      --max-width: 900px;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,#f3f7ff 0%, #ffffff 100%);
+      padding: 28px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+      margin:0;
+    }
+
+    article[data-testid="test-profile-card"]{
+      width:100%;
+      max-width:var(--max-width);
+      background:var(--card-bg);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:18px;
+      display:flex;
+      gap:18px;
+      align-items:flex-start;
+      flex-direction:column;
+    }
+
+    /* Desktop layout */
+    @media(min-width:720px){
+      article[data-testid="test-profile-card"]{
+        flex-direction:row;
+        align-items:center;
+      }
+    }
+
+    /* Avatar area */
+    figure.avatar {
+      margin:0;
+      display:flex;
+      gap:12px;
+      align-items:center;
+      width:100%;
+      max-width:220px;
+      flex-shrink:0;
+    }
+    figure.avatar img{
+      width:96px;
+      height:96px;
+      object-fit:cover;
+      border-radius:14px;
+      border:2px solid #eee;
+      display:block;
+    }
+
+    /* Main content */
+    .content{
+      flex:1 1 auto;
+      min-width:0; /* allow truncation */
+    }
+
+    header.card-header{
+      display:flex;
+      gap:12px;
+      align-items:baseline;
+      justify-content:space-between;
+      margin-bottom:10px;
+    }
+
+    h2[data-testid="test-user-name"]{
+      margin:0;
+      font-size:1.25rem;
+      line-height:1.1;
+      font-weight:600;
+      color:#121217;
+      word-wrap:break-word;
+    }
+
+    .meta{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      color:var(--muted);
+      font-size:0.9rem;
+    }
+
+    p[data-testid="test-user-bio"]{
+      margin:6px 0 14px 0;
+      color:#333;
+      line-height:1.45;
+      margin-bottom:14px;
+    }
+
+    nav.social[data-testid="test-user-social-links"]{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    nav.social a{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 10px;
+      border-radius:10px;
+      text-decoration:none;
+      border:1px solid #efefef;
+      font-size:0.9rem;
+      color:#333;
+      background:#fafafa;
+    }
+
+    nav.social a:focus{
+      outline:none;
+      box-shadow:var(--focus);
+      border-color:var(--accent);
+    }
+
+    .lists{
+      display:flex;
+      gap:18px;
+      margin-top:12px;
+      flex-wrap:wrap;
+    }
+
+    section.list{
+      min-width:200px;
+      flex:1 1 180px;
+    }
+
+    section.list h3{
+      margin:0 0 8px 0;
+      font-size:0.95rem;
+      color:#222;
+    }
+
+    ul{
+      margin:0;
+      padding-left:1.15em;
+      margin-bottom:0;
+    }
+    li{
+      margin:6px 0;
+      color:#333;
+      line-height:1.35;
+    }
+
+    /* inputs (avatar url + file input) */
+    .avatar-controls{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      margin-top:8px;
+    }
+    .small-input{
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+    input[type="text"]{
+      padding:8px;
+      border-radius:8px;
+      border:1px solid #ddd;
+      font-size:0.9rem;
+      width:100%;
+    }
+    input[type="file"]{
+      font-size:0.9rem;
+    }
+
+    .time-box{
+      background:#fbfbff;
+      border:1px solid #f0f0ff;
+      padding:8px 10px;
+      border-radius:8px;
+      font-family:monospace;
+      font-size:0.9rem;
+      display:inline-block;
+      color:#111;
+    }
+
+    /* focus styles for keyboard nav */
+    a, button, input {
+      outline-color: transparent;
+    }
+
+    /* ensure focus visible for keyboard only (accessible) */
+    :focus-visible {
+      box-shadow: var(--focus);
+      border-radius:8px;
+    }
+  </style>
+</head>
+<body>
+  <article aria-label="User profile card" data-testid="test-profile-card">
+    <figure class="avatar" aria-hidden="false">
+      <img
+        src="data:image/jpeg;base64,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"
+        alt="User avatar"
+        data-testid="test-user-avatar"
+        id="avatarImage"
+      />
+      <figcaption style="display:none">User avatar</figcaption>
+    </figure>
+
+    <div class="content">
+      <header class="card-header" role="banner">
+        <div>
+          <h2 data-testid="test-user-name" aria-label="User full name">Aisha Bello</h2>
+          <div class="meta" aria-hidden="false">
+            <div>
+              Current time (ms):
+              <span class="time-box" data-testid="test-user-time" id="userTime">0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Avatar controls: accept URL or file upload -->
+        <div class="avatar-controls" aria-hidden="false">
+          <label class="small-input" for="avatarUrlInput" style="width:220px;">
+            <input id="avatarUrlInput" type="text" placeholder="Paste avatar image URL" aria-label="Paste avatar URL" />
+            <button id="applyUrlBtn" type="button" aria-label="Apply avatar URL">Apply</button>
+          </label>
+          <label class="small-input" for="avatarFileInput">
+            <input id="avatarFileInput" type="file" accept="image/*" aria-label="Upload avatar image" />
+          </label>
+        </div>
+      </header>
+
+      <section aria-label="Short biography">
+        <p data-testid="test-user-bio">
+          Product designer & front-end dev who loves building delightful interfaces and teaching what I learn along the way. Coffee-fueled and detail oriented.
+        </p>
+      </section>
+
+      <nav aria-label="Social links" class="social" data-testid="test-user-social-links">
+        <a id="link-twitter" data-testid="test-user-social-twitter" href="https://twitter.com/" target="_blank" rel="noopener noreferrer">Twitter</a>
+        <a id="link-linkedin" data-testid="test-user-social-linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a id="link-github" data-testid="test-user-social-github" href="https://github.com/zeetof" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </nav>
+
+      <div class="lists" style="margin-top:14px;">
+        <section class="list" aria-label="Hobbies">
+          <h3>Hobbies</h3>
+          <ul data-testid="test-user-hobbies" aria-live="polite">
+            <li>Coding</li>
+            <li>Trail running</li>
+            <li>Photography</li>
+            <li>Problem solving/li>
+          </ul>
+        </section>
+
+        <section class="list" aria-label="Dislikes">
+          <h3>Dislikes</h3>
+          <ul data-testid="test-user-dislikes" aria-live="polite">
+            <li>Unclear requirements</li>
+            <li>Excessive autobots</li>
+            <li>Badly compressed images</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </article>
+
+  <script>
+    // Set the time display to Date.now() at render and keep it updated.
+    (function () {
+      const timeEl = document.querySelector('[data-testid="test-user-time"]');
+      function updateTime() {
+        // Use Date.now() so tests reading this can compare milliseconds.
+        timeEl.textContent = String(Date.now());
+      }
+      // Update immediately at load:
+      updateTime();
+      // Update every 500ms — keeps it fresh but not expensive.
+      const tick = setInterval(updateTime, 500);
+
+      // Avatar controls: accept URL or file upload. Final display uses a URL.
+      const avatarImg = document.getElementById('avatarImage');
+      const avatarUrlInput = document.getElementById('avatarUrlInput');
+      const applyUrlBtn = document.getElementById('applyUrlBtn');
+      const fileInput = document.getElementById('avatarFileInput');
+
+      applyUrlBtn.addEventListener('click', () => {
+        const url = avatarUrlInput.value.trim();
+        if (!url) return;
+        avatarImg.src = url;
+        avatarImg.alt = 'User avatar (from URL)';
+      });
+
+      fileInput.addEventListener('change', (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+        // Create an object URL so the image is a valid URL for automatic tests
+        const objectUrl = URL.createObjectURL(file);
+        avatarImg.src = objectUrl;
+        avatarImg.alt = file.name || 'Uploaded avatar';
+        // revoke object URL after image loads to free memory
+        avatarImg.onload = () => {
+          try { URL.revokeObjectURL(objectUrl); } catch (err) { /* ignore */ }
+        }
+      });
+
+      // Make links keyboard-focusable and show visible focus (browser default + focus-visible used in CSS)
+      document.querySelectorAll('a').forEach(a=>{
+        a.setAttribute('tabindex', '0');
+      });
+
+      // Expose updateTime for tests if they need to call it manually:
+      window.__profileCardUpdateTime = updateTime;
+
+      // Clean up on unload (just in case)
+      window.addEventListener('beforeunload', ()=> clearInterval(tick));
+    })();
+  </script>
+</body>
+</html>
