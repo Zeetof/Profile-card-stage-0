@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | Profile Card</title>
+
+  <!-- Styles and Scripts -->
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="index.html">Profile</a></li>
+      <li><a href="about.html">About Me</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    <form data-testid="test-contact-form" aria-label="Contact Us Form">
+      <!-- Full Name -->
+      <label for="name">Full Name</label>
+      <input 
+        id="name" 
+        name="name"
+        data-testid="test-contact-name" 
+        type="text" 
+        required 
+        aria-describedby="error-name"
+      />
+      <p id="error-name" data-testid="test-contact-error-name" role="alert"></p>
+
+      <!-- Email -->
+      <label for="email">Email</label>
+      <input 
+        id="email" 
+        name="email"
+        data-testid="test-contact-email" 
+        type="email" 
+        required 
+        aria-describedby="error-email"
+      />
+      <p id="error-email" data-testid="test-contact-error-email" role="alert"></p>
+
+      <!-- Subject -->
+      <label for="subject">Subject</label>
+      <input 
+        id="subject" 
+        name="subject"
+        data-testid="test-contact-subject" 
+        type="text" 
+        required 
+        aria-describedby="error-subject"
+      />
+      <p id="error-subject" data-testid="test-contact-error-subject" role="alert"></p>
+
+      <!-- Message -->
+      <label for="message">Message</label>
+      <textarea 
+        id="message" 
+        name="message"
+        data-testid="test-contact-message" 
+        required 
+        minlength="10" 
+        aria-describedby="error-message"
+      ></textarea>
+      <p id="error-message" data-testid="test-contact-error-message" role="alert"></p>
+
+      <!-- Submit -->
+      <button type="submit" data-testid="test-contact-submit">Submit</button>
+
+      <!-- Success Message -->
+      <p data-testid="test-contact-success" class="success" role="status"></p>
+    </form>
+  </main>
+</body>
+</html>
